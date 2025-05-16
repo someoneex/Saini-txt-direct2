@@ -74,6 +74,7 @@ keyboard = InlineKeyboardMarkup(
         [
             InlineKeyboardButton(text="📞 Contact", url="https://t.me/Inter_X_Admin_Bot"),
             InlineKeyboardButton(text="👥 Group", url="https://t.me/+gZr649E1sLY4ODBl"),
+            InlineKeyboardButton(text="🔍 𝐇𝐄𝐋𝐏", callback_data="/help"),
         ],
     ]
 )
@@ -349,73 +350,46 @@ async def restart_handler(_, m):
         
 @bot.on_message(filters.command(["start"]))
 async def start_command(bot: Client, message: Message):
-    caption = """
-╭━━━━━━━━━✦✧✦━━━━━━━━━╮
-       🌟 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 𝗧𝗫𝗧-𝗫𝗧𝗥𝗔𝗖𝗧𝗢𝗥 𝗣𝗥𝗢 🌟  
-╰━━━━━━━━━✦✧✦━━━━━━━━━╯
-
-⚡️ 𝗛𝗲𝘆 𝗕𝗿𝗼! 𝗜'𝗺 𝗡𝗼𝘁 𝗝𝘂𝘀𝘁 𝗔 𝗕𝗼𝘁...  
-𝗜'𝗺 𝗬𝗼𝘂𝗿 𝗣𝗲𝗿𝘀𝗼𝗻𝗮𝗹 𝗙𝗶𝗹𝗲 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗶𝗼𝗻 𝗪𝗶𝘇𝗮𝗿𝗱! ✨  
-
-▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰  
-╭━━━━━━━━━━━━━━━━━✦
-┃ 📥 𝗪𝗛𝗔𝗧 𝗜 𝗖𝗔𝗡 𝗗𝗢:  
-┃      
-┃╭➤ 𝗠𝗔𝗚𝗜𝗖𝗔𝗟𝗟𝗬 extract Videos & PDFs from .txt files  
-┃├➤ 𝗦𝗠𝗢𝗢𝗧𝗛𝗟𝗬 upload to Telegram — hassle-free  
-┃╰➤ 𝗙𝗟𝗔𝗪𝗟𝗘𝗦𝗦𝗟𝗬 handle HTTPS links like a pro  
-╰━━━━━━━━━━━━━━━━━✦
-▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰  
-
-💡 𝗝𝗨𝗦𝗧 𝗦𝗘𝗡𝗗 𝗠𝗘 𝗔:  
-• .txt file  
-• or HTTPS link  
-...and watch the magic happen! ✨  
-
-╭─────────────╮ 
-    🛠️ 𝗡𝗘𝗘𝗗 𝗛𝗘𝗟𝗣? 𝗧𝘆𝗽𝗲: /help  
-╰─────────────╯
-
-╔════════▣◎▣════════╗
-    Created 𝘄𝗶𝘁𝗵 ❤️ 𝗯𝘆  💻💪  𝐂𝐀 𝐈𝐧𝐭𝐞𝐫 𝐗
-╚════════▣◎▣════════╝
-"""
-    await bot.send_message(
+    random_image_url = random.choice(image_urls)
+    caption = (
+        f"╭━━━━━━━━━✦✧✦━━━━━━━━━╮\n"
+        f"       🌟 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 𝗧𝗫𝗧-𝗫𝗧𝗥𝗔𝗖𝗧𝗢𝗥 𝗣𝗥𝗢 🌟  \n"
+        f"╰━━━━━━━━━✦✧✦━━━━━━━━━╯\n\n"
+        f"⚡️ 𝗛𝗲𝘆 𝗕𝗿𝗼! 𝗜'𝗺 𝗡𝗼𝘁 𝗝𝘂𝘀𝘁 𝗔 𝗕𝗼𝘁...  \n"
+        f"𝗜'𝗺 𝗬𝗼𝘂𝗿 𝗣𝗲𝗿𝘀𝗼𝗻𝗮𝗹 𝗙𝗶𝗹𝗲 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗶𝗼𝗻 𝗪𝗶𝘇𝗮𝗿𝗱! ✨  \n\n"
+        f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰  \n"
+        f"╭━━━━━━━━━━━━━━━━━✦\n"
+        f"┃ 📥 𝗪𝗛𝗔𝗧 𝗜 𝗖𝗔𝗡 𝗗𝗢:  \n"
+        f"┃      \n"
+        f"┃╭➤ 𝗠𝗔𝗚𝗜𝗖𝗔𝗟𝗟𝗬 extract Videos & PDFs from .txt files  \n"
+        f"┃├➤ 𝗦𝗠𝗢𝗢𝗧𝗛𝗟𝗬 upload to Telegram — hassle-free  \n"
+        f"┃╰➤ 𝗙𝗟𝗔𝗪𝗟𝗘𝗦𝗦𝗟𝗬 handle HTTPS links like a pro  \n"
+        f"╰━━━━━━━━━━━━━━━━━✦\n"
+        f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰  \n\n"
+        f"💡 𝗝𝗨𝗦𝗧 𝗦𝗘𝗡𝗗 𝗠𝗘 𝗔:  \n"
+        f"• .txt file  \n"
+        f"• or HTTPS link  \n"
+        f"...and watch the magic happen! ✨  \n\n"
+        f"╭─────────────╮ \n"
+        f"    🛠️ 𝗡𝗘𝗘𝗗 𝗛𝗘𝗟𝗣? 𝗧𝘆𝗽𝗲: /help  \n"
+        f"╰─────────────╯\n\n"
+        f"╔════════▣◎▣════════╗\n"
+        f"    Created 𝘄𝗶𝘁𝗵 ❤️ 𝗯𝘆  💻💪  𝐂𝐀 𝐈𝐧𝐭𝐞𝐫 𝐗\n"
+        f"╚════════▣◎▣════════╝"
+    )
+    
+    await bot.send_photo(
         chat_id=message.chat.id,
-        text=caption,
+        photo=random_image_url,
+        caption=caption,
         reply_markup=keyboard
-    )
-
-@bot.on_message(filters.command(["id"]))
-async def id_command(client, message: Message):
-    chat_id = message.chat.id
-    await message.reply_text(f"<blockquote>The ID of this chat id is:</blockquote>\n`{chat_id}`")
-
-@bot.on_message(filters.private & filters.command(["info"]))
-async def info(bot: Client, update: Message):
-    
-    text = (
-        f"╭────────────────╮\n"
-        f"│✨ **__Your Telegram Info__**✨ \n"
-        f"├────────────────\n"
-        f"├🔹**Name :** `{update.from_user.first_name} {update.from_user.last_name if update.from_user.last_name else 'None'}`\n"
-        f"├🔹**User ID :** @{update.from_user.username}\n"
-        f"├🔹**TG ID :** `{update.from_user.id}`\n"
-        f"├🔹**Profile :** {update.from_user.mention}\n"
-        f"╰────────────────╯"
-    )
-    
-    await update.reply_text(        
-        text=text,
-        disable_web_page_preview=True,
-        reply_markup=BUTTONSCONTACT
     )
 
 @bot.on_message(filters.command(["help"]))
 async def txt_handler(client: Client, m: Message):
     await bot.send_message(m.chat.id, text= (
         f"╭━━━━━━━✦✧✦━━━━━━━╮\n"
-        f"💥 𝘽𝙊𝙏 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦\n"
+        f" 💥 𝘽𝙊𝙏 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦  \n"
         f"╰━━━━━━━✦✧✦━━━━━━━╯\n"
         f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n" 
         f"📌 𝗠𝗮𝗶𝗻 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀:\n\n"  
@@ -448,6 +422,18 @@ async def txt_handler(client: Client, m: Message):
         f" ➠ 𝐌𝐚𝐝𝐞 𝐁𝐲 : [𝐂𝐀 𝐈𝐧𝐭𝐞𝐫 𝐗](https://t.me/Inter_X_Admin_Bot) 💻\n"
         f"╰────────⊰◆⊱────────╯\n"
         )
+                           help_keyboard = InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton(text="🔐 𝐃𝐑𝐌", callback_data="/drm")]  # DRM button
+        ]
+    )
+
+    await bot.send_message(
+        chat_id=m.chat.id,
+        text=help_text,
+        reply_markup=help_keyboard,
+        disable_web_page_preview=True
+    )
     )                    
           
 @bot.on_message(filters.command(["logs"]))
