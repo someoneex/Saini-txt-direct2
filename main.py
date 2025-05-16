@@ -387,7 +387,8 @@ async def start_command(bot: Client, message: Message):
 
 @bot.on_message(filters.command(["help"]))
 async def txt_handler(client: Client, m: Message):
-    await bot.send_message(m.chat.id, text= (
+    # Your existing formatted text (EXACTLY AS YOU WANT IT)
+    help_text = (
         f"╭━━━━━━━✦✧✦━━━━━━━╮\n"
         f" 💥 𝘽𝙊𝙏 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦  \n"
         f"╰━━━━━━━✦✧✦━━━━━━━╯\n"
@@ -421,20 +422,20 @@ async def txt_handler(client: Client, m: Message):
         f"╭────────⊰◆⊱────────╮\n"   
         f" ➠ 𝐌𝐚𝐝𝐞 𝐁𝐲 : [𝐂𝐀 𝐈𝐧𝐭𝐞𝐫 𝐗](https://t.me/Inter_X_Admin_Bot) 💻\n"
         f"╰────────⊰◆⊱────────╯\n"
-        )
+    )
 
+    # Single DRM Button (Aapke jaise hi)
     help_keyboard = InlineKeyboardMarkup(
-    [
-        [InlineKeyboardButton(text="🔐 𝐃𝐑𝐌", callback_data="/drm")]
-    ]
-)
+        [
+            [InlineKeyboardButton("🔐 𝐃𝐑𝐌", callback_data="/drm")]
+        ]
+    )
 
-await client.send_message(
-    chat_id=m.chat.id,
-    text=help_text,
-    reply_markup=help_keyboard,
-    disable_web_page_preview=True
-)
+    await m.reply_text(
+        text=help_text,
+        reply_markup=help_keyboard,
+        disable_web_page_preview=True
+    )
     )                    
           
 @bot.on_message(filters.command(["logs"]))
