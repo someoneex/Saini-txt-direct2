@@ -424,15 +424,17 @@ async def txt_handler(client: Client, m: Message):
         )
 
     help_keyboard = InlineKeyboardMarkup(
-        [[InlineKeyboardButton(text="🔐 𝐃𝐑𝐌", callback_data="/drm")]]  # Fixed DRM button
-    )
+    [
+        [InlineKeyboardButton(text="🔐 𝐃𝐑𝐌", callback_data="/drm")]
+    ]
+)
 
-    await client.send_message(
-        chat_id=m.chat.id,
-        text=help_text,
-        reply_markup=help_keyboard,
-        disable_web_page_preview=True
-    )
+await client.send_message(
+    chat_id=m.chat.id,
+    text=help_text,
+    reply_markup=help_keyboard,
+    disable_web_page_preview=True
+)
     )                    
           
 @bot.on_message(filters.command(["logs"]))
