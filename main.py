@@ -435,8 +435,7 @@ async def txt_handler(client: Client, m: Message):
         text=help_text,
         reply_markup=help_keyboard,
         disable_web_page_preview=True
-    )
-    )                    
+    )                  
           
 @bot.on_message(filters.command(["logs"]))
 async def send_logs(client: Client, m: Message):  # Correct parameter name
