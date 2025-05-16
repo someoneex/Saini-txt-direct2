@@ -422,13 +422,12 @@ async def txt_handler(client: Client, m: Message):
         f" ➠ 𝐌𝐚𝐝𝐞 𝐁𝐲 : [𝐂𝐀 𝐈𝐧𝐭𝐞𝐫 𝐗](https://t.me/Inter_X_Admin_Bot) 💻\n"
         f"╰────────⊰◆⊱────────╯\n"
         )
-                           help_keyboard = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton(text="🔐 𝐃𝐑𝐌", callback_data="/drm")]  # DRM button
-        ]
+
+    help_keyboard = InlineKeyboardMarkup(
+        [[InlineKeyboardButton(text="🔐 𝐃𝐑𝐌", callback_data="/drm")]]  # Fixed DRM button
     )
 
-    await bot.send_message(
+    await client.send_message(
         chat_id=m.chat.id,
         text=help_text,
         reply_markup=help_keyboard,
