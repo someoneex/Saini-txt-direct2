@@ -33,6 +33,7 @@ from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import CallbackQuery  # Add this import
 import aiohttp
 import aiofiles
 import zipfile
@@ -69,16 +70,16 @@ async def show_random_emojis(message):
 
 # Inline keyboard for start command
 BUTTONSCONTACT = InlineKeyboardMarkup([[InlineKeyboardButton(text="𝐂𝐀 𝐈𝐧𝐭𝐞𝐫 𝐗", url="https://t.me/Inter_X_Admin_Bot")]])
+# Inline keyboard for start command (Updated Layout)
 keyboard = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(text="📞 Contact", url="https://t.me/Inter_X_Admin_Bot"),
-            InlineKeyboardButton(text="👥 Group", url="https://t.me/+gZr649E1sLY4ODBl"),
-            InlineKeyboardButton(text="🔍 𝐇𝐄𝐋𝐏", callback_data="/help"),
+            InlineKeyboardButton(text="👥 Group", url="https://t.me/+gZr649E1sLY4ODBl")
         ],
+        [InlineKeyboardButton(text="🔍 𝐇𝐄𝐋𝐏", callback_data="help")]  # Help button moved below
     ]
 )
-
 # Image URLs for the random image feature
 image_urls = [
     "https://i.ibb.co/0RQWk275/x.jpg",
@@ -1160,7 +1161,16 @@ async def text_handler(bot: Client, m: Message):
 
     except Exception as e:
         await m.reply_text(str(e))
+# Callback Handlers for Inline Buttons
+@bot.on_callback_query(filters.regex(r"^help$"))
+async def help_callback(client: Client, callback_query: CallbackQuery):
+    await callback_query.answer()
+    await txt_handler(client, callback_query.message)  # Reuse the existing /help function
 
+@bot.on_callback_query(filters.regex(r"^drm$"))
+async def drm_callback(client: Client, callback_query: CallbackQuery):
+    await callback_query.answer()
+    await txt_handler(client, callback_query.message)  # Reuse the existing /drm function
 
 
 
