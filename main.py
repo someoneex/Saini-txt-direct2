@@ -405,7 +405,7 @@ async def txt_handler(client: Client, m: Message):
     # Single DRM Button (Aapke jaise hi)
     help_keyboard = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("🔐 𝐃𝐑𝐌", callback_data="/drm")]
+            [InlineKeyboardButton("🔐 𝐃𝐑𝐌", callback_data="drm")]
         ]
     )
 
@@ -488,7 +488,12 @@ async def txt_handler(bot: Client, m: Message):
         os.remove(x)
         return
     
-    await editable.edit(
+    # नया स्टाइलिश मैसेज + इनलाइन बटन
+download_keyboard = InlineKeyboardMarkup([
+    [InlineKeyboardButton("🧿 𝐃𝐞𝐟𝐚𝐮𝐥𝐭", callback_data="start_from_1")]
+])
+
+await editable.edit(
     f"**╭━━━━━━━━━━━━━━━━➣\n"
     f"┣⪼ ᴛᴏᴛᴀʟ 🔗 ʟɪɴᴋꜱ ꜰᴏᴜɴᴅ ᴀʀᴇ {len(links)}\n"
     f"┃ \n"
@@ -501,8 +506,19 @@ async def txt_handler(bot: Client, m: Message):
     f"┣⪼ ✏️ ꜰᴏʀ ᴇx. 1\n"
     f"┃\n"
     f"┣⪼ 🧿 ᴄʜᴏᴏꜱᴇ ᴅᴇꜰᴀᴜʟᴛ ᴛᴏ ꜱᴛᴀʀᴛ ꜰʀᴏᴍ 1.\n"
-    f"╰━━━━━━━━━━━━━━━━➣**"
+    f"╰━━━━━━━━━━━━━━━━➣**",
+    reply_markup=download_keyboard
 )
+
+# बटन प्रेस को हैंडल करने के लिए नया कॉलबैक हैंडलर (फाइल के अंत में जोड़ें)
+@bot.on_callback_query(filters.regex("^start_from_1$"))
+async def start_from_one_callback(client: Client, callback_query: CallbackQuery):
+    await callback_query.answer()
+    await callback_query.message.edit(reply_markup=None)  # बटन हटाएं
+    msg = callback_query.message
+    msg.text = "1"  # मैन्युअल रूप से 1 सेट करें
+    await txt_handler(bot, msg)  # मुख्य डाउनलोड फंक्शन को कॉल करें
+    
     input0: Message = await bot.listen(editable.chat.id)
     raw_text = input0.text
     await input0.delete(True)
