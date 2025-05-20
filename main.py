@@ -488,12 +488,12 @@ async def txt_handler(bot: Client, m: Message):
         os.remove(x)
         return
     
-    # नया स्टाइलिश मैसेज + इनलाइन बटन
+    # Inside the async txt_handler function:
 download_keyboard = InlineKeyboardMarkup([
     [InlineKeyboardButton("🧿 𝐃𝐞𝐟𝐚𝐮𝐥𝐭", callback_data="start_from_1")]
 ])
 
-    await editable.edit(
+await editable.edit(
     f"**╭━━━━━━━━━━━━━━━━➣\n"
     f"┣⪼ ᴛᴏᴛᴀʟ 🔗 ʟɪɴᴋꜱ ꜰᴏᴜɴᴅ ᴀʀᴇ {len(links)}\n"
     f"┃ \n"
@@ -510,7 +510,11 @@ download_keyboard = InlineKeyboardMarkup([
     reply_markup=download_keyboard
 )
 
-# बटन प्रेस को हैंडल करने के लिए नया कॉलबैक हैंडलर (फाइल के अंत में जोड़ें)
+# Then continue with the rest of the function
+    input0: Message = await bot.listen(editable.chat.id)
+    raw_text = input0.text
+    await input0.delete(True)
+
 @bot.on_callback_query(filters.regex("^start_from_1$"))
 async def start_from_one_callback(client: Client, callback_query: CallbackQuery):
     await callback_query.answer()
