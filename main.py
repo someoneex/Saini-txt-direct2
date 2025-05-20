@@ -493,7 +493,7 @@ download_keyboard = InlineKeyboardMarkup([
     [InlineKeyboardButton("🧿 𝐃𝐞𝐟𝐚𝐮𝐥𝐭", callback_data="start_from_1")]
 ])
 
-await editable.edit(
+    await editable.edit(
     f"**╭━━━━━━━━━━━━━━━━➣\n"
     f"┣⪼ ᴛᴏᴛᴀʟ 🔗 ʟɪɴᴋꜱ ꜰᴏᴜɴᴅ ᴀʀᴇ {len(links)}\n"
     f"┃ \n"
