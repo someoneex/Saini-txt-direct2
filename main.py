@@ -487,7 +487,6 @@ async def txt_handler(bot: Client, m: Message):
         await m.reply_text("<pre><code>🔹Invalid file input.</code></pre>")
         os.remove(x)
         return
-    
     # Inside the async txt_handler function:
 download_keyboard = InlineKeyboardMarkup([
     [InlineKeyboardButton("🧿 𝐃𝐞𝐟𝐚𝐮𝐥𝐭", callback_data="start_from_1")]
@@ -510,6 +509,9 @@ await editable.edit(
     reply_markup=download_keyboard
 )
 
+# Then continue with the rest of the function
+input0: Message = await bot.listen(editable.chat.id)
+# ... rest of the code ...
 @bot.on_callback_query(filters.regex("^start_from_1$"))
 async def start_from_one_callback(client: Client, callback_query: CallbackQuery):
     await callback_query.answer()
