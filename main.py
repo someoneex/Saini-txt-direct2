@@ -77,7 +77,7 @@ keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton(text="📞 Contact", url="https://t.me/Inter_X_Admin_Bot"),
             InlineKeyboardButton(text="👥 Group", url="https://t.me/+gZr649E1sLY4ODBl")
         ],
-        [InlineKeyboardButton(text="🔍 𝐇𝐄𝐋𝐏", callback_data="help")]  # Help button moved below
+        [InlineKeyboardButton(text="🔐 𝐃𝐑𝐌", callback_data="help")]  # Help button moved below
     ]
 )
 # Image URLs for the random image feature
@@ -353,30 +353,7 @@ async def restart_handler(_, m):
 async def start_command(bot: Client, message: Message):
     random_image_url = random.choice(image_urls)
     caption = (
-        f"╭━━━━━━━━━✦✧✦━━━━━━━━━╮\n"
-        f"       🌟 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 𝗧𝗫𝗧-𝗫𝗧𝗥𝗔𝗖𝗧𝗢𝗥 𝗣𝗥𝗢 🌟  \n"
-        f"╰━━━━━━━━━✦✧✦━━━━━━━━━╯\n\n"
-        f"⚡️ 𝗛𝗲𝘆 𝗕𝗿𝗼! 𝗜'𝗺 𝗡𝗼𝘁 𝗝𝘂𝘀𝘁 𝗔 𝗕𝗼𝘁...  \n"
-        f"𝗜'𝗺 𝗬𝗼𝘂𝗿 𝗣𝗲𝗿𝘀𝗼𝗻𝗮𝗹 𝗙𝗶𝗹𝗲 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗶𝗼𝗻 𝗪𝗶𝘇𝗮𝗿𝗱! ✨  \n\n"
-        f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰  \n"
-        f"╭━━━━━━━━━━━━━━━━━✦\n"
-        f"┃ 📥 𝗪𝗛𝗔𝗧 𝗜 𝗖𝗔𝗡 𝗗𝗢:  \n"
-        f"┃      \n"
-        f"┃╭➤ 𝗠𝗔𝗚𝗜𝗖𝗔𝗟𝗟𝗬 extract Videos & PDFs from .txt files  \n"
-        f"┃├➤ 𝗦𝗠𝗢𝗢𝗧𝗛𝗟𝗬 upload to Telegram — hassle-free  \n"
-        f"┃╰➤ 𝗙𝗟𝗔𝗪𝗟𝗘𝗦𝗦𝗟𝗬 handle HTTPS links like a pro  \n"
-        f"╰━━━━━━━━━━━━━━━━━✦\n"
-        f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰  \n\n"
-        f"💡 𝗝𝗨𝗦𝗧 𝗦𝗘𝗡𝗗 𝗠𝗘 𝗔:  \n"
-        f"• .txt file  \n"
-        f"• or HTTPS link  \n"
-        f"...and watch the magic happen! ✨  \n\n"
-        f"╭─────────────╮ \n"
-        f"    🛠️ 𝗡𝗘𝗘𝗗 𝗛𝗘𝗟𝗣? 𝗧𝘆𝗽𝗲: /help  \n"
-        f"╰─────────────╯\n\n"
-        f"╔════════▣◎▣════════╗\n"
-        f"    Created 𝘄𝗶𝘁𝗵 ❤️ 𝗯𝘆  💻💪  𝐂𝐀 𝐈𝐧𝐭𝐞𝐫 𝐗\n"
-        f"╚════════▣◎▣════════╝"
+        f"🌟 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 𝗧𝗫𝗧-𝗨𝗣𝗟𝗢𝗔𝗗𝗘𝗥 𝗣𝗥𝗢 🌟"
     )
     
     await bot.send_photo(
