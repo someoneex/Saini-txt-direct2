@@ -510,11 +510,6 @@ await editable.edit(
     reply_markup=download_keyboard
 )
 
-# Then continue with the rest of the function
-    input0: Message = await bot.listen(editable.chat.id)
-    raw_text = input0.text
-    await input0.delete(True)
-
 @bot.on_callback_query(filters.regex("^start_from_1$"))
 async def start_from_one_callback(client: Client, callback_query: CallbackQuery):
     await callback_query.answer()
