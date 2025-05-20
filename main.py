@@ -488,7 +488,21 @@ async def txt_handler(bot: Client, m: Message):
         os.remove(x)
         return
     
-    await editable.edit(f"**🔹Total 🔗 links found are {len(links)}\n\n🔹Img : {img_count}  🔹PDF : {pdf_count}\n🔹ZIP : {zip_count}  🔹Other : {other_count}\n\n🔹Send From where you want to download.**")
+    await editable.edit(
+    f"**╭━━━━━━━━━━━━━━━━➣\n"
+    f"┣⪼ ᴛᴏᴛᴀʟ 🔗 ʟɪɴᴋꜱ ꜰᴏᴜɴᴅ ᴀʀᴇ {len(links)}\n"
+    f"┃ \n"
+    f"┣⪼ 🎥 ᴠɪᴅᴇᴏꜱ : {other_count}\n"
+    f"┣⪼ 📑 ᴘᴅꜰ : {pdf_count}\n"
+    f"┣⪼ 📂 ᴢɪᴘ : {zip_count}\n"
+    f"┣⪼ 🖼️ ɪᴍɢ : {img_count}\n"
+    f"┃\n"
+    f"┣⪼ 📝 ᴇɴᴛᴇʀ ɴᴜᴍʙᴇʀ ꜰʀᴏᴍ ᴡʜᴇʀᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ.\n"
+    f"┣⪼ ✏️ ꜰᴏʀ ᴇx. 1\n"
+    f"┃\n"
+    f"┣⪼ 🧿 ᴄʜᴏᴏꜱᴇ ᴅᴇꜰᴀᴜʟᴛ ᴛᴏ ꜱᴛᴀʀᴛ ꜰʀᴏᴍ 1.\n"
+    f"╰━━━━━━━━━━━━━━━━➣**"
+)
     input0: Message = await bot.listen(editable.chat.id)
     raw_text = input0.text
     await input0.delete(True)
