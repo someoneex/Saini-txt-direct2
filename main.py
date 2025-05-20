@@ -425,15 +425,36 @@ async def send_logs(client: Client, m: Message):  # Correct parameter name
     except Exception as e:
         await m.reply_text(f"Error sending logs: {e}")
 
-@bot.on_message(filters.command(["drm"]) )
+@bot.on_message(filters.command(["drm"]))
 async def txt_handler(bot: Client, m: Message):  
     if m.chat.id not in AUTH_USERS and m.chat.id not in CHANNELS_LIST:
         print(f"User ID not in AUTH_USERS", m.chat.id)
         print(f"Channel ID not in CHANNELS_LIST", m.chat.id)
-        await m.reply_text(f"__**Oops, you are not authorized to use this command**__")
+        error_msg = (
+            "╭━━━━━━━━━━━━━╮\n"
+            "┣⪼ ❌  𝐍𝐨𝐭 𝐒𝐮𝐛𝐬𝐜𝐫𝐢𝐛𝐞𝐝\n"
+            "╰━━━━━━━━━━━━━╯\n\n"
+            "╭─────────────\n"
+            "┣⪼ 📌 𝐏𝐥𝐞𝐚𝐬𝐞 𝐜𝐨𝐧𝐭𝐚𝐜𝐭\n"
+            "┣⪼ 👤 @Inter_X_Admin_Bot\n"
+            "┣⪼ 💫 𝐅𝐨𝐫 𝐒𝐮𝐛𝐬𝐜𝐫𝐢𝐩𝐭𝐢𝐨𝐧\n"
+            "╰─────────────"
+        )
+        await m.reply_text(error_msg, disable_web_page_preview=True)
         return
-    editable = await m.reply_text(f"**🔹Hi I am Poweful TXT Downloader📥 Bot.\n🔹Send me the txt file and wait.**")
+    
+    user_name = m.from_user.first_name
+    welcome_msg = (
+        f"╭━━━━━━━━━━━━━━━━➣\n"
+        f"┣⪼ 👋 ʜᴇʟʟᴏ {user_name} ꜱɪʀ !\n"
+        f"┣⪼ 🗣️ ɪ ᴀᴍ ᴘᴏᴡᴇʀꜰᴜʟ ᴛxᴛ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ\n"
+        f"┣⪼ 📥 ᴘʟᴇᴀꜱᴇ ꜱᴇɴᴅ ᴍᴇ ᴛxᴛ ꜰɪʟᴇ ꜰᴏʀ ᴅᴏᴡɴʟᴏᴀᴅ\n"
+        f"╰━━━━━━━━━━━━━━━━➣"
+    )
+    
+    editable = await m.reply_text(welcome_msg)
     input: Message = await bot.listen(editable.chat.id)
+    # ... (बाकी का कोड वैसा ही रहेगा) ...
     x = await input.download()
     await input.delete(True)
     file_name, ext = os.path.splitext(os.path.basename(x))  # Extract filename & extension
